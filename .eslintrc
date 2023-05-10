@@ -1,0 +1,118 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+        "next",
+        "next/core-web-vitals",
+        "airbnb",
+        "airbnb-typescript",
+        "plugin:sonarjs/recommended",
+        "prettier"
+    ],
+    "plugins": [
+        "@typescript-eslint",
+        "jest",
+        "unused-imports"
+    ],
+    "env": {
+        "es2021": true,
+        "browser": true,
+        "jest": true,
+        "node": true
+    },
+    "rules": {
+        "react/require-default-props": "off",
+        "import/prefer-default-export": "off",
+        "react/prop-types": "off",
+        "no-multi-assign": "off",
+        "import/imports-first": [
+            "error",
+            "absolute-first"
+        ],
+        "react/function-component-definition": [
+            1,
+            {
+                "namedComponents": "arrow-function",
+                "unnamedComponents": "arrow-function"
+            }
+        ],
+        "react/jsx-filename-extension": [
+            1,
+            {
+                "extensions": [
+                    ".js",
+                    ".jsx",
+                    ".ts",
+                    ".tsx"
+                ]
+            }
+        ],
+        // Multiline indentation: https://stackoverflow.com/a/48906878
+        "indent": ["error", 2],
+        "react/jsx-indent": ["error", 2],
+        "react/jsx-indent-props": ["error", 2],
+        "quotes": [
+            2,
+            "single",
+            {
+                "avoidEscape": true
+            }
+        ],
+        "semi": [
+            "error",
+            "never"
+        ],
+        "constructor-super": "error",
+        "no-invalid-this": "error",
+        "no-restricted-syntax": [
+            "error",
+            "ForInStatement"
+        ],
+        "use-isnan": "error",
+        "@typescript-eslint/no-unused-vars": "off",
+        "unused-imports/no-unused-imports": "warn",
+        "unused-imports/no-unused-vars": [
+            "warn",
+            {
+                "vars": "all",
+                "varsIgnorePattern": "^_",
+                "args": "after-used",
+                "argsIgnorePattern": "^_"
+            }
+        ],
+        "@typescript-eslint/await-thenable": "error",
+        "@typescript-eslint/no-floating-promises": "error",
+        "@typescript-eslint/no-misused-new": "error",
+        "@typescript-eslint/no-use-before-define": "error",
+        "@typescript-eslint/restrict-plus-operands": "error",
+        "@typescript-eslint/no-unnecessary-condition": [
+            "error",
+            {
+                "allowConstantLoopConditions": true
+            }
+        ]
+    },
+    "settings": {
+        "import/parsers": {
+            "@typescript-eslint/parser": [
+                ".js",
+                ".jsx",
+                ".ts",
+                ".tsx"
+            ]
+        },
+        "import/resolver": {
+            "typescript": {}
+        },
+        "react": {
+            "version": "detect"
+        }
+    },
+    "parserOptions": {
+        // Allows for the parsing of modern ECMAScript features
+        "ecmaVersion": 2021,
+        // Allows for the use of imports
+        "sourceType": "module",
+        // https://blog.geographer.fr/eslint-parser-services, https://www.robertcooper.me/using-eslint-and-prettier-in-a-typescript-project
+        "project": "./tsconfig.json"
+    }
+}
