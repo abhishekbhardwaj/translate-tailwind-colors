@@ -19,7 +19,7 @@ const Home: NextPage = () => (
       <p>
         The goal of this website is to list out all of the <a href='https://tailwindcss.com/'>TailwindCSS</a> colors in
         all different CSS color formats. This is currently not possible to do easily and{' '}
-        <a href='https://tailwindcss.com/docs/customizing-colors'>TailwindCSS docs</a> just list them out as HEX codes.
+        <a href='https://tailwindcss.com/docs/customizing-colors'>TailwindCSS docs</a> just lists them out as HEX codes.
       </p>
       <p>
         If you have suggestions or improvements, feel free to make a PR at{' '}
