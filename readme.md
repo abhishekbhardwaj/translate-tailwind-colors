@@ -2,7 +2,8 @@
 
 The goal of the website is to list out all of the [TailwindCSS](https://tailwindcss.com/) colors in different CSS color formats. This is currently not very easy to do as [TailwindCSS docs](https://tailwindcss.com/docs/customizing-colors) just lists them out as HEX codes.
 
-Available at: [https://translate-tailwind-colors.vercel.app/](https://translate-tailwind-colors.vercel.app/).
+Available at: [https://translate-tailwind-colors.vercel.app/](https://translate-tailwind-colors.vercel.app/). 
+If you have suggestions or improvements, feel free to make a PR.
 
 ## Setup Instructions
 
