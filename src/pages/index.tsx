@@ -1,11 +1,13 @@
 import React from 'react'
 import { NextPage } from 'next'
+import Head from 'next/head'
 import { colord, extend } from 'colord'
 import cmykPlugin from 'colord/plugins/cmyk'
 import hwbPlugin from 'colord/plugins/hwb'
 import lchPlugin from 'colord/plugins/lch'
 
 import ColorBox from '@/components/color-box'
+import ScrollToTopArrow from '@/components/scroll-to-top-arrow'
 import useTailwindColors from '@/hooks/use-tailwind-colors'
 
 extend([cmykPlugin, hwbPlugin, lchPlugin])
@@ -15,7 +17,11 @@ const Home: NextPage = () => {
 
   return (
     <div className='container mx-auto my-16 scroll-smooth'>
-      <div className='prose lg:prose-lg max-w-none'>
+      <Head>
+        <title>Tailwind Colors</title>
+      </Head>
+      <ScrollToTopArrow anchorId='top' className='' />
+      <div className='prose lg:prose-lg max-w-none' id='top'>
         <h1>TailwindCSS Colors</h1>
         <p>
           The goal of this website is to list out all of the <a href='https://tailwindcss.com/'>TailwindCSS</a> colors
