@@ -7,6 +7,7 @@ import hwbPlugin from 'colord/plugins/hwb'
 import lchPlugin from 'colord/plugins/lch'
 
 import ColorBox from '@/components/color-box'
+import CopyValueToClipboard from '@/components/copy-value-to-clipboard'
 import ScrollToTopArrow from '@/components/scroll-to-top-arrow'
 import useTailwindColors from '@/hooks/use-tailwind-colors'
 
@@ -20,6 +21,7 @@ const Home: NextPage = () => {
       <Head>
         <title>Tailwind Colors</title>
       </Head>
+
       <ScrollToTopArrow anchorId='top' className='' />
       <div className='prose lg:prose-lg max-w-none' id='top'>
         <h1>TailwindCSS Colors</h1>
@@ -107,12 +109,24 @@ const Home: NextPage = () => {
                             <ColorBox hex={shadeVal} />
                             <div className='font-mono'>{shade}</div>
                           </th>
-                          <td className='px-6 py-4'>{shadeVal}</td>
-                          <td className='px-6 py-4'>{colord(shadeVal).toRgbString()}</td>
-                          <td className='px-6 py-4'>{colord(shadeVal).toHslString()}</td>
-                          <td className='px-6 py-4'>{colord(shadeVal).toCmykString()}</td>
-                          <td className='px-6 py-4'>{colord(shadeVal).toHwbString()}</td>
-                          <td className='px-6 py-4'>{colord(shadeVal).toLchString()}</td>
+                          <td className='px-6 py-4'>
+                            <CopyValueToClipboard value={shadeVal} />
+                          </td>
+                          <td className='px-6 py-4'>
+                            <CopyValueToClipboard value={colord(shadeVal).toRgbString()} />
+                          </td>
+                          <td className='px-6 py-4'>
+                            <CopyValueToClipboard value={colord(shadeVal).toHslString()} />
+                          </td>
+                          <td className='px-6 py-4'>
+                            <CopyValueToClipboard value={colord(shadeVal).toCmykString()} />
+                          </td>
+                          <td className='px-6 py-4'>
+                            <CopyValueToClipboard value={colord(shadeVal).toHwbString()} />
+                          </td>
+                          <td className='px-6 py-4'>
+                            <CopyValueToClipboard value={colord(shadeVal).toLchString()} />
+                          </td>
                         </tr>
                       )
                     })}
