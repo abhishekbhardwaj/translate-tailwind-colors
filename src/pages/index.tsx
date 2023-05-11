@@ -6,6 +6,8 @@ import hwbPlugin from 'colord/plugins/hwb'
 import lchPlugin from 'colord/plugins/lch'
 import resolveConfig from 'tailwindcss/resolveConfig'
 
+import ColorBox from '@/components/color-box'
+
 import tailwindConfig from '../../tailwind.config'
 
 extend([cmykPlugin, hwbPlugin, lchPlugin])
@@ -67,10 +69,7 @@ const Home: NextPage = () => (
                 const shadeVal = val[shade]
                 return (
                   <div key={shade} className='flex flex-col flex-1 gap-2 sm:gap-1'>
-                    <div
-                      className='flex flex-col items-center justify-center w-full h-12 transition-colors duration-500 rounded shadow-inner xl:h-16'
-                      style={{ backgroundColor: shadeVal }}
-                    />
+                    <ColorBox hex={shadeVal} />
                     <div className='flex flex-col justify-between px-1 text-right rotate-90 sm:rotate-0 sm:flex-row sm:items-center lg:flex-col lg:items-start xl:flex-row xl:items-center'>
                       <div className='font-mono'>{shade}</div>
                     </div>
