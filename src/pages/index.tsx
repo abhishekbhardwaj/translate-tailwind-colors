@@ -56,7 +56,7 @@ const Home: NextPage = () => {
           {Object.keys(palettes).map((col) => {
             const val = palettes[col]
             return (
-              <a href={`#${col}`} className='flex flex-col items-center no-underline group'>
+              <a key={col} href={`#${col}`} className='flex flex-col items-center no-underline group'>
                 <ColorBox hex={val[500]} />
                 <span className='font-mono text-sm transition-all group-hover:font-bold'>{col}</span>
               </a>
