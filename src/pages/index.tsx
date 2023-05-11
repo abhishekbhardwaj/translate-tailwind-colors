@@ -4,110 +4,121 @@ import { colord, extend } from 'colord'
 import cmykPlugin from 'colord/plugins/cmyk'
 import hwbPlugin from 'colord/plugins/hwb'
 import lchPlugin from 'colord/plugins/lch'
-import resolveConfig from 'tailwindcss/resolveConfig'
 
 import ColorBox from '@/components/color-box'
-
-import tailwindConfig from '../../tailwind.config'
+import useTailwindColors from '@/hooks/use-tailwind-colors'
 
 extend([cmykPlugin, hwbPlugin, lchPlugin])
 
-const fullConfig = resolveConfig(tailwindConfig)
+const Home: NextPage = () => {
+  const { palettes } = useTailwindColors()
 
-const Home: NextPage = () => (
-  <div className='mx-4 my-16'>
-    <div className='prose lg:prose-lg max-w-none'>
-      <h1>TailwindCSS Colors</h1>
-      <p>
-        The goal of this website is to list out all of the <a href='https://tailwindcss.com/'>TailwindCSS</a> colors in
-        all different CSS color formats. This is currently not possible to do easily and{' '}
-        <a href='https://tailwindcss.com/docs/customizing-colors'>TailwindCSS docs</a> just lists them out as HEX codes.
-      </p>
-      <p>
-        If you have suggestions or improvements, feel free to make a PR at{' '}
-        <a href='https://github.com/abhishekbhardwaj/tailwind-colors'>
-          https://github.com/abhishekbhardwaj/tailwind-colors
-        </a>
-        .
-      </p>
-      <h3>For custom colors:</h3>
-      <ol>
-        <li>
-          <a href='https://palettte.app/'>Palettte</a> - A detailed tutorial to use this is available{' '}
-          <a href='https://gabrielschneider.de/palettte-app/'>here</a>.
-        </li>
-        <li>
-          <a href='https://colorbox.io/'>ColorBox</a>.
-        </li>
-        <li>
-          <a href='https://www.tints.dev/'>Tints</a> - custom palette generator from one color.
-        </li>
-      </ol>
-    </div>
-    <div className='flex flex-col w-full gap-4 mt-8 -mx-4'>
-      {Object.keys((fullConfig.theme as any)?.colors || {}).map((col) => {
-        const val = (fullConfig.theme as any)?.colors?.[col]
+  return (
+    <div className='container mx-auto my-16 scroll-smooth'>
+      <div className='prose lg:prose-lg max-w-none'>
+        <h1>TailwindCSS Colors</h1>
+        <p>
+          The goal of this website is to list out all of the <a href='https://tailwindcss.com/'>TailwindCSS</a> colors
+          in different CSS color formats. This is currently not possible to do easily and{' '}
+          <a href='https://tailwindcss.com/docs/customizing-colors'>TailwindCSS docs</a> just lists them out as HEX
+          codes.
+        </p>
+        <p>
+          If you have suggestions or improvements, feel free to make a PR at{' '}
+          <a href='https://github.com/abhishekbhardwaj/tailwind-colors'>
+            https://github.com/abhishekbhardwaj/tailwind-colors
+          </a>
+          .
+        </p>
+        <h3>For custom colors:</h3>
+        <ol>
+          <li>
+            <a href='https://palettte.app/'>Palettte</a> - A detailed tutorial to use this is available{' '}
+            <a href='https://gabrielschneider.de/palettte-app/'>here</a>.
+          </li>
+          <li>
+            <a href='https://colorbox.io/'>ColorBox</a>.
+          </li>
+          <li>
+            <a href='https://www.tints.dev/'>Tints</a> - custom palette generator from one color.
+          </li>
+        </ol>
+        <h3>Navigate:</h3>
+        <div className='grid grid-cols-11 gap-4'>
+          {Object.keys(palettes).map((col) => {
+            const val = palettes[col]
+            return (
+              <a href={`#${col}`} className='flex flex-col items-center no-underline group'>
+                <ColorBox hex={val[500]} />
+                <span className='font-mono text-sm transition-all group-hover:font-bold'>{col}</span>
+              </a>
+            )
+          })}
+        </div>
+      </div>
+      <div className='flex flex-col w-full mt-8 -mx-4 space-y-8'>
+        {Object.keys(palettes).map((col) => {
+          const val = palettes[col]
 
-        if (typeof val === 'string') {
-          // return (
-          //   <div key={col} className='px-4 py-2'>
-          //     <h2 className='text-sm font-bold'>{col}</h2>
-          //     <div
-          //       className='flex flex-col items-center justify-center w-full h-12 transition-colors duration-500 rounded shadow-inner xl:h-16'
-          //       style={{ backgroundColor: val }}
-          //     />
-          //   </div>
-          // )
-          return null
-        }
+          return (
+            <div key={col} id={col} className='flex flex-col w-full px-4 py-2 space-y-4'>
+              <h2 className='text-xl font-semibold'>{col}</h2>
+              <div className='relative overflow-x-auto'>
+                <table className='w-full text-sm text-center text-gray-500'>
+                  <thead className='text-xs text-gray-700 uppercase rounded-lg bg-gray-50'>
+                    <tr>
+                      <th scope='col' className='px-6 py-3'>
+                        Shade
+                      </th>
+                      <th scope='col' className='px-6 py-3'>
+                        HEX
+                      </th>
+                      <th scope='col' className='px-6 py-3'>
+                        RGB
+                      </th>
+                      <th scope='col' className='px-6 py-3'>
+                        HSL
+                      </th>
+                      <th scope='col' className='px-6 py-3'>
+                        CMYK
+                      </th>
+                      <th scope='col' className='px-6 py-3'>
+                        HWB
+                      </th>
+                      <th scope='col' className='px-6 py-3'>
+                        LCH
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(val).map((shade) => {
+                      const shadeVal = val[shade as any]
 
-        return (
-          <div key={col} className='px-4 py-2'>
-            <h2 className='text-sm font-bold'>{col}</h2>
-            <div className='flex w-full gap-2'>
-              {Object.keys(val).map((shade) => {
-                const shadeVal = val[shade]
-                return (
-                  <div key={shade} className='flex flex-col flex-1 gap-2 sm:gap-1'>
-                    <ColorBox hex={shadeVal} />
-                    <div className='flex flex-col justify-between px-1 text-right rotate-90 sm:rotate-0 sm:flex-row sm:items-center lg:flex-col lg:items-start xl:flex-row xl:items-center'>
-                      <div className='font-mono'>{shade}</div>
-                    </div>
-                    <div className='flex flex-col space-y-2'>
-                      <div>
-                        <span className='font-mono font-bold'>HEX</span>
-                        <span>{shadeVal}</span>
-                      </div>
-                      <div>
-                        <span className='font-mono font-bold'>RGB</span>
-                        <span>{colord(shadeVal).toRgbString()}</span>
-                      </div>
-                      <div>
-                        <span className='font-mono font-bold'>HSL</span>
-                        <span>{colord(shadeVal).toHslString()}</span>
-                      </div>
-                      <div>
-                        <span className='font-mono font-bold'>CMYK</span>
-                        <span>{colord(shadeVal).toCmykString()}</span>
-                      </div>
-                      <div>
-                        <span className='font-mono font-bold'>HWB</span>
-                        <span>{colord(shadeVal).toHwbString()}</span>
-                      </div>
-                      <div>
-                        <span className='font-mono font-bold'>LCH</span>
-                        <span>{colord(shadeVal).toLchString()}</span>
-                      </div>
-                    </div>
-                  </div>
-                )
-              })}
+                      return (
+                        // eslint-disable-next-line react/no-unknown-property
+                        <tr key={`${col}-${shade}`} className='bg-white border-b border-gray-100'>
+                          <th scope='row' className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap'>
+                            <ColorBox hex={shadeVal} />
+                            <div className='font-mono'>{shade}</div>
+                          </th>
+                          <td className='px-6 py-4'>{shadeVal}</td>
+                          <td className='px-6 py-4'>{colord(shadeVal).toRgbString()}</td>
+                          <td className='px-6 py-4'>{colord(shadeVal).toHslString()}</td>
+                          <td className='px-6 py-4'>{colord(shadeVal).toCmykString()}</td>
+                          <td className='px-6 py-4'>{colord(shadeVal).toHwbString()}</td>
+                          <td className='px-6 py-4'>{colord(shadeVal).toLchString()}</td>
+                        </tr>
+                      )
+                    })}
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
-        )
-      })}
+          )
+        })}
+      </div>
     </div>
-  </div>
-)
+  )
+}
 
 export default Home
