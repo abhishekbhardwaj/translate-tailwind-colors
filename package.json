@@ -24,6 +24,7 @@
     "copy-to-clipboard": "^3.3.3",
     "is-ci": "^3.0.1",
     "next": "^13.4.1",
+    "nextjs-google-analytics": "^2.3.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
