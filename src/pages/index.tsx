@@ -33,8 +33,8 @@ const Home: NextPage = () => {
         </p>
         <p>
           If you have suggestions or improvements, feel free to make a PR at{' '}
-          <a href='https://github.com/abhishekbhardwaj/tailwind-colors'>
-            https://github.com/abhishekbhardwaj/tailwind-colors
+          <a href='https://github.com/abhishekbhardwaj/translate-tailwind-colors'>
+            https://github.com/abhishekbhardwaj/translate-tailwind-colors
           </a>
           .
         </p>
