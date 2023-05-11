@@ -1,6 +1,6 @@
-# tailwind-react-next.js-typescript-eslint-jest-starter
+# TailwindCSS Colors
 
-Starter template for building a project using React, Typescript, Next.js, Jest, TailwindCSS and ESLint.
+The goal of the website is to list out all of the [TailwindCSS](https://tailwindcss.com/) colors in different CSS color formats. This is currently not very easy to do and [TailwindCSS docs](https://tailwindcss.com/docs/customizing-colors) just lists them out as HEX codes.
 
 ## Setup Instructions
 
